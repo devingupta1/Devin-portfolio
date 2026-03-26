@@ -1,80 +1,85 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import type { Project } from "@/types";
+import { PROJECTS } from "@/lib/projects";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 
-interface ProjectGridProps {
-  projects: Project[];
-  showFilter?: boolean;
-}
+/* ─── component ────────────────────────────────────────────── */
 
-export function ProjectGrid({ projects, showFilter = false }: ProjectGridProps) {
-  const [activeTag, setActiveTag] = useState<string | null>(null);
-
-  const allTags = useMemo(() => {
-    const tags = new Set<string>();
-    projects.forEach((p) => p.tags.forEach((t) => tags.add(t)));
-    return Array.from(tags).sort();
-  }, [projects]);
-
-  const filtered = activeTag
-    ? projects.filter((p) => p.tags.includes(activeTag))
-    : projects;
+export function ProjectGrid() {
+  const featured = PROJECTS.filter((p) => p.featured);
+  const rest = PROJECTS.filter((p) => !p.featured);
 
   return (
-    <div>
-      {/* Tag filter bar */}
-      {showFilter && (
-        <div className="flex flex-wrap gap-2 mb-10">
-          <button
-            onClick={() => setActiveTag(null)}
-            className={`font-mono text-xs px-4 py-2 transition-colors ghost-border ${
-              activeTag === null
-                ? "bg-primary text-white border-primary"
-                : "text-text-muted hover:text-text-primary hover:bg-surface-high"
-            }`}
-            style={{ borderRadius: "var(--radius-pill)" }}
-            id="filter-all"
-          >
-            All
-          </button>
-          {allTags.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => setActiveTag(tag === activeTag ? null : tag)}
-              className={`font-mono text-xs px-4 py-2 transition-colors ghost-border ${
-                activeTag === tag
-                  ? "bg-primary text-white border-primary"
-                  : "text-text-muted hover:text-text-primary hover:bg-surface-high"
-              }`}
-              style={{ borderRadius: "var(--radius-pill)" }}
-              id={`filter-${tag.toLowerCase().replace(/\s+/g, "-")}`}
-            >
-              {tag}
-            </button>
+    <section id="projects">
+      {/* ── section header ─────────────────────────────────── */}
+      <p
+        className="font-mono uppercase"
+        style={{
+          fontSize: 10,
+          letterSpacing: "0.1em",
+          color: "var(--color-text-muted)",
+          marginBottom: 24,
+        }}
+      >
+        selected work
+      </p>
+
+      {/* ── featured grid (3-col desktop) ──────────────────── */}
+      <div
+        className="grid gap-6"
+        style={{
+          gridTemplateColumns: "repeat(auto-fill, minmax(0, 1fr))",
+        }}
+      >
+        {/* responsive overrides via Tailwind classes */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 col-span-full">
+          {featured.map((project, i) => (
+            <ProjectCard key={project.slug} project={project} index={i} />
           ))}
         </div>
-      )}
-
-      {/* Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <AnimatePresence mode="popLayout">
-          {filtered.map((project, i) => (
-            <motion.div
-              key={project.slug}
-              layout
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ProjectCard project={project} index={i} />
-            </motion.div>
-          ))}
-        </AnimatePresence>
       </div>
-    </div>
+
+      {/* ── divider + more projects ────────────────────────── */}
+      {rest.length > 0 && (
+        <>
+          <div className="my-16 flex items-center gap-4">
+            <div
+              className="flex-1"
+              style={{
+                height: 1,
+                background: "var(--color-border)",
+              }}
+            />
+            <p
+              className="font-mono uppercase shrink-0"
+              style={{
+                fontSize: 10,
+                letterSpacing: "0.1em",
+                color: "var(--color-text-muted)",
+              }}
+            >
+              more projects
+            </p>
+            <div
+              className="flex-1"
+              style={{
+                height: 1,
+                background: "var(--color-border)",
+              }}
+            />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {rest.map((project, i) => (
+              <ProjectCard
+                key={project.slug}
+                project={project}
+                index={i + featured.length}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </section>
   );
 }
