@@ -193,13 +193,14 @@ export function Hero() {
             letterSpacing: "-0.03em",
           }}
         >
-          <span className="font-mono" aria-label={SCRAMBLE_LINE_1}>
+          <span className="font-mono" aria-label={SCRAMBLE_LINE_1} suppressHydrationWarning>
             {line1}
           </span>
           <br />
           <span
             className="font-mono text-primary-light"
             aria-label={SCRAMBLE_LINE_2}
+            suppressHydrationWarning
           >
             {line2}
           </span>
