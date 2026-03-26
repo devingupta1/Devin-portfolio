@@ -5,6 +5,7 @@ import { Nav } from "@/components/ui/Nav";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { Footer } from "@/components/sections/Footer";
+import { BackToTop } from "@/components/ui/BackToTop";
 import { SITE } from "@/lib/projects";
 
 const geistSans = Geist({
@@ -60,6 +61,7 @@ export default function RootLayout({
           <PageTransition>{children}</PageTransition>
         </main>
         <Footer />
+        <BackToTop />
       </body>
     </html>
   );
