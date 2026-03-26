@@ -54,9 +54,10 @@ export function Nav() {
       {/* logo */}
       <Link
         href="/"
-        className="text-text-primary"
+        className="text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
         style={{ fontWeight: 500, fontSize: 16 }}
         id="nav-logo"
+        aria-label="Devin Gupta — home"
       >
         dg.
       </Link>
@@ -70,6 +71,7 @@ export function Nav() {
               key={link.href}
               href={link.href}
               id={`nav-${link.label}`}
+              className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
               style={{
                 fontSize: 13,
                 letterSpacing: "0.01em",
@@ -96,7 +98,8 @@ export function Nav() {
         <a
           href={`mailto:${SITE.email}`}
           id="nav-cta"
-          className="font-mono"
+          className="font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          aria-label="Send email to Devin Gupta"
           style={{
             fontSize: 13,
             padding: "5px 14px",

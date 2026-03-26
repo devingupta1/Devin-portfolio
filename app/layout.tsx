@@ -6,7 +6,6 @@ import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { Footer } from "@/components/sections/Footer";
 import { BackToTop } from "@/components/ui/BackToTop";
-import { SITE } from "@/lib/projects";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,25 +17,27 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  "https://devin-portfolio-git-main-devingupta1s-projects.vercel.app";
+
 export const metadata: Metadata = {
-  title: {
-    default: SITE.title,
-    template: `%s | ${SITE.name}`,
-  },
-  description: SITE.description,
-  metadataBase: new URL(SITE.url),
+  title: "Devin Gupta — Systems & AI Engineer",
+  description:
+    "CS junior at University of Utah building distributed systems and agentic AI. Hackathon winner. Open to internships.",
+  metadataBase: new URL(siteUrl),
   openGraph: {
-    title: SITE.title,
-    description: SITE.description,
-    url: SITE.url,
-    siteName: SITE.name,
-    locale: "en_US",
+    title: "Devin Gupta — Systems & AI Engineer",
+    description:
+      "CS junior at University of Utah building distributed systems and agentic AI.",
     type: "website",
+    url: "/",
   },
   twitter: {
     card: "summary_large_image",
-    title: SITE.title,
-    description: SITE.description,
+    title: "Devin Gupta — Systems & AI Engineer",
+    description:
+      "CS junior at University of Utah building distributed systems and agentic AI.",
   },
   robots: {
     index: true,
