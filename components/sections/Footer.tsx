@@ -78,8 +78,6 @@ export function Footer() {
 
           <a
             href={`mailto:${SITE.email}`}
-            target="_blank"
-            rel="noopener noreferrer"
             id="footer-email"
             className="font-mono cursor-pointer"
             style={{
