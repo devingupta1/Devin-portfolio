@@ -142,5 +142,5 @@ export const SITE = {
   url: "https://devin-portfolio.vercel.app",
   email: "u1475642@utah.edu",
   linkedin: "https://www.linkedin.com/in/devin-gupta-/",
-  github: "https://github.com/devin-gupta",
+  github: "https://github.com/devingupta1",
 } as const;
