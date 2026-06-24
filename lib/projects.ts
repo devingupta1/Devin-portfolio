@@ -140,7 +140,7 @@ export const SITE = {
   description:
     "CS junior at the University of Utah building distributed systems, agentic AI, and full-stack applications.",
   url: "https://devin-portfolio.vercel.app",
-  email: "mailto:devingupta0004@gmail.com",
+  email: "devingupta0004@gmail.com",
   linkedin: "https://www.linkedin.com/in/devin-gupta-/",
   github: "https://github.com/devingupta1",
 } as const;

@@ -77,7 +77,7 @@ export function Footer() {
           </a>
 
           <a
-            href={SITE.email}
+            href={`mailto:${SITE.email}`}
             target="_blank"
             rel="noopener noreferrer"
             id="footer-email"
@@ -96,7 +96,7 @@ export function Footer() {
             onMouseLeave={(e) => {
               e.currentTarget.style.color = "var(--color-text-muted)";
             }}
-            aria-label="Copy email address to clipboard"
+            aria-label="Send me an email"
           >
             Email
           </a>
