@@ -76,8 +76,10 @@ export function Footer() {
             LinkedIn
           </a>
 
-          <button
-            onClick={() => copy(SITE.email)}
+          <a
+            href={SITE.email}
+            target="_blank"
+            rel="noopener noreferrer"
             id="footer-email"
             className="font-mono cursor-pointer"
             style={{
@@ -96,8 +98,8 @@ export function Footer() {
             }}
             aria-label="Copy email address to clipboard"
           >
-            {SITE.email}
-          </button>
+            Email
+          </a>
         </div>
       </div>
 
